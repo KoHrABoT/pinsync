@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "username": "Rawknee",
+    "password": "jemi0419",
+    "role": "admin",
+    "approved": true,
+    "createdAt": "2025-03-14T00:00:00.000Z",
+    "likedImages": []
+  }
+]

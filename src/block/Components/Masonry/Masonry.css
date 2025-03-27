@@ -1,0 +1,116 @@
+.masonry-container {
+    width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  .masonry-columns {
+    display: flex;
+    gap: 10px; /* Space between columns, matching Pinterest's horizontal gap */
+    justify-content: center;
+  }
+
+  .masonry-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between items in a column, matching Pinterest's vertical gap */
+    width: calc(100% / var(--column-count, 4)); /* Default to 4 columns, overridden by JS */
+  }
+
+  /* Individual item container */
+  .masonry-item {
+    break-inside: avoid; /* Prevents items from breaking across columns */
+    width: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    margin: 0; /* Ensure no margin adds extra space */
+    padding: 0; /* Ensure no padding adds extra space */
+  }
+
+  /* Prevent overlapping during hover by limiting scale effect */
+  .masonry-item:hover {
+    transform: scale(1.02); /* Reduce scale to 1.02 to minimize overlap */
+    z-index: 10; /* Ensure the hovered item stays on top but doesn’t overlap excessively */
+  }
+
+  /* Image itself */
+  .masonry-image {
+    width: 100%;
+    height: auto; /* Automatically adjust height based on width */
+    object-fit: cover; /* Maintain aspect ratio while filling the container */
+    border-radius: 15px;
+  }
+
+  /* Ensure hover buttons don’t interfere with spacing */
+  .hover-buttons {
+    position: absolute;
+    bottom: 10px; /* Place at bottom center */
+    left: 50%;
+    transform: translate(-50%, 20px); /* Move down slightly */
+    display: flex;
+    gap: 10px;
+    opacity: 0; /* Hidden initially */
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    pointer-events: none; /* Prevent interaction when hidden */
+  }
+
+  .image-container {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-container:hover .hover-buttons {
+    opacity: 1;
+    transform: translate(-50%, 0); /* Move up smoothly */
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Stylish Buttons (unchanged, but ensure they fit within the container) */
+  .circle-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.3); /* Glass effect */
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    transform: scale(0.9);
+  }
+
+  .circle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  }
+
+  /* Responsive adjustments (unchanged, but ensure gaps scale appropriately) */
+  @media (max-width: 1024px) {
+    .masonry-column {
+      width: calc(100% / 3); /* 3 columns on medium screens */
+      gap: 8px; /* Slightly smaller gap on medium screens */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .masonry-column {
+      width: calc(100% / 2); /* 2 columns on tablets */
+      gap: 6px; /* Smaller gap on tablets */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .masonry-column {
+      width: 100%; /* 1 column on mobile */
+      gap: 5px; /* Smallest gap on mobile */
+    }
+  }
